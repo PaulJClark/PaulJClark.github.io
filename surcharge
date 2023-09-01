@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>Calculator JS</title>
+  <link href="stylesheet.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+    <div class="topnav">
+        <a class="active" href="#home">Home</a>
+        <a href="CHS.html">CHS Designer</a>
+        <a href="excavation.html">Excavation</a>
+        <a href="surcharge.html">Surcharge</a>
+    </div>
+
+  <h1>Surcharge Check</h1>
+  <p>The calculations below are based on the method described in <em>BS 9295:2020 Guide to the Structural Design of Buried Pipes.</em> </p>
+
+    <div class="row">
+
+        <div class="column>">
+            <img src="Surchargefield.PNG" height = "500">
+        </div>
+
+        <div class="column">
+            <form id="myForm">
+                <h3>Surcharge Properties</h3>
+                <label for="number1">Enter load, F </label>
+                <input type="number" id="number1" name="number1" required>
+                <label>kN</label><br><br>
+
+                <label for="number2">Enter width, B </label>
+                <input type="number" id="number2" name="number2" required>
+                <label>m</label><br><br>
+
+                <label for="number3">Enter length, L </label>
+                <input type="number" id="number3" name="number3" required>
+                <label>m</label><br><br>
+
+                <label for="number4">Enter depth to service, H </label>
+                <input type="number" id="number4" name="number4" required>
+                <label>m</label><br><br>
+
+                <button type="button" id="calculateButton">Calculate</button>
+            </form>
+        </div>
+
+
+    </div>
+
+    <h3>Results</h3>
+
+    <div class="results">
+        <p id="result"></p>
+    </div>
+    
+    <div class="footer">
+        <p><em>Copyright - Paul James Clark 2023</em></p>
+    </div>
+
+    <script>
+        // Get references to the input elements and the result paragraph
+        const number1Input = document.getElementById('number1');
+        const number2Input = document.getElementById('number2');
+        const number3Input = document.getElementById('number3');
+        const number4Input = document.getElementById('number4');
+        const resultParagraph = document.getElementById('result');
+
+        // Get the button and add a click event listener
+        const calculateButton = document.getElementById('calculateButton');
+        calculateButton.addEventListener('click', () => {
+            // Get the values entered by the user
+            const load = parseFloat(number1Input.value);
+            const width = parseFloat(number2Input.value);
+            const length = parseFloat(number3Input.value);
+            const height = parseFloat(number4Input.value);
+            
+            // Check if the values are valid numbers
+            if (isNaN(load) || isNaN(width) || isNaN(length) || isNaN(height)) {
+                resultParagraph.textContent = 'Please enter valid numbers.';
+            } else {
+                // Perform the math calculation (for example, addition)
+                const area = (length * width).toFixed(2);
+                const surcharge = (load/area).toFixed(2);
+                const effwidth = (width + height).toFixed(2);
+                const efflength = (length + height).toFixed(2);
+                const effarea = (efflength * effwidth).toFixed(2);
+                const appsurcharge = (load/effarea).toFixed(2);
+                const wheelarea = ((0.4+height)**2).toFixed(2);
+                const allsurcharge = (100/wheelarea).toFixed(2);
+                const fos = (allsurcharge/appsurcharge).toFixed(2);
+
+                
+                // Display the result
+                resultParagraph.innerHTML = `<h3>Standard wheel loading</h3>
+                Load model 1, wheel load = 100 kN <br>
+                Wheel area = 0.4 x 0.4 = 0.16 m<sup>2</sup> <br>
+                Surcharge at surface, Q = F/A = 100 / 0.16 = 625 kN/m<sup>2</sup> <br>
+                <br>
+                Allowable surcharge on service, Q<sub>all</sub> = F/A' = 100 / ${wheelarea} = ${allsurcharge} kN/m<sup>2</sup> <br><br>
+
+
+                
+                <h3>Applied loading</h3> 
+                Area, A<sub>s</sub> = L x B = ${length} x ${width} = ${area} m<sup>2</sup> <br>
+                Surcharge, Q = F/A = ${load} / ${area} = ${surcharge} kN/m<sup>2</sup> <br>
+                <br>
+                Depth to service, H = ${height} m <br>
+                Spread angle for soil, 2V:1H or 26.7&deg; <br>
+                Effective width, B' = B + 2 x H/2 = ${width} + 2 x ${height} / 2 = ${effwidth} m <br>
+                Effective length, L' = L + 2 x H/2 = ${length} + 2 x ${height} / 2 = ${efflength} m <br>
+                <br>
+                Applied surcharge on service, Q' = F/A' = ${load} / (${efflength} x ${effwidth}) = ${appsurcharge} kN/m<sup>2</sup> <br>
+                Factor of safety = Q<sub>all</sub>/Q' = ${allsurcharge} / ${appsurcharge} = ${fos}
+                
+
+                 `;
+            }
+        });
+    </script>
+</body>
+</html>
