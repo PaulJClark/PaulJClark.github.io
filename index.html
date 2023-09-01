@@ -7,43 +7,67 @@
   <title>Calculator JS</title>
   <link href="stylesheet.css" rel="stylesheet" type="text/css" />
 </head>
+
+
 <body>
     <div class="topnav">
         <a class="active" href="#home">Home</a>
-        <a href="index.html">CHS Designer</a>
+        <a href="CHS.html">CHS Designer</a>
         <a href="excavation.html">Excavation</a>
-        <a href="#about">Geotechnical</a>
+        <a href="surcharge.html">Surcharge</a>
     </div>
 
-  <h1>Steel CHS Designer</h1>
-    <img src="chs.PNG" height = "300">
-    <form id="myForm">
-        <h3>Section Properties</h3>
-        <label for="number1">Enter diameter, D </label>
-        <input type="number" id="number1" name="number1" required>
-        <label>mm</label><br><br>
 
-        <label for="number2">Enter wall thickness, t </label>
-        <input type="number" id="number2" name="number2" required>
-        <label>mm</label><br><br>
+    <div class="sheet">
+        <h1>Steel CHS Designer</h1>
+        <p>The calculations below are based on the method described in EN 1993-1-1.</p>  
 
-        <label for="number3">Enter yield strength of steel, f<sub>y</sub> </label>
-        <input type="number" id="number3" name="number3" required>
-        <label>N/mm<sup>2</sup></label><br><br>
+            <div class="row">
+                
+                <div class="column">
+                    <img src="chs.PNG" height="400">
+                </div>
+                    
+                <div class="column">
+                    <form id="myForm">
+                        <h3>Section Properties</h3>
+                        <label for="number1">Enter diameter, D </label>
+                        <input type="number" id="number1" name="number1" required>
+                        <label>mm</label><br><br>
 
-        <h3>Design Loading</h3>
-        <label for="number4">Enter applied shear, V<sub>d</sub> </label>
-        <input type="number" id="number4" name="number4" required>
-        <label>kN</label><br><br>
+                        <label for="number2">Enter wall thickness, t </label>
+                        <input type="number" id="number2" name="number2" required>
+                        <label>mm</label><br><br>
 
-        <label for="number5">Enter applied moment, M<sub>d</sub> </label>
-        <input type="number" id="number5" name="number5" required>
-        <label>kNm</label><br><br>
+                        <label for="number3">Enter yield strength of steel, f<sub>y</sub> </label>
+                        <input type="number" id="number3" name="number3" required>
+                        <label>N/mm<sup>2</sup></label><br><br>
 
-        <button type="button" id="calculateButton">Calculate</button>
-    </form>
-    <h3>Results</h3>
-    <p id="result"></p>
+                        <h3>Design Loading</h3>
+                        <label for="number4">Enter applied shear, V<sub>d</sub> </label>
+                        <input type="number" id="number4" name="number4" required>
+                        <label>kN</label><br><br>
+
+                        <label for="number5">Enter applied moment, M<sub>d</sub> </label>
+                        <input type="number" id="number5" name="number5" required>
+                        <label>kNm</label><br><br>
+
+                        <button type="button" id="calculateButton">Calculate</button>
+                    </form>
+                </div>
+
+            </div>
+
+            <h3>Results</h3>
+            <div class="results">
+                <p id="result"></p>
+            </div>    
+    </div>
+    
+    <div class="footer">
+        <p><em>Copyright - Paul James Clark 2023</em></p>
+    </div>
+    
 
     <script>
         // Get references to the input elements and the result paragraph
