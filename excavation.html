@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 <head>
 
   <meta charset="utf-8">
@@ -7,112 +8,150 @@
   <title>Calculator JS</title>
   <link href="stylesheet.css" rel="stylesheet" type="text/css" />
 </head>
+
 <body>
-    <div class="topnav">
-        <a class="active" href="#home">Home</a>
-        <a href="CHS.html">CHS Designer</a>
-        <a href="excavation.html">Excavation</a>
-        <a href="surcharge.html">Surcharge</a>
-    </div>
+  <div class="topnav">
+    <a class="active" href="#home">Home</a>
+    <a href="CHS.html">CHS Designer</a>
+    <a href="excavation.html">Excavation</a>
+    <a href="surcharge.html">Surcharge</a>
+    <a href="soilproperties.html">Soil Properties</a>
+  </div>
 
   <h1>Excavation Designer</h1>
-    <img src="excavation.png" height = "300">
-    <form id="myForm">
-        <h3>Excavation Properties</h3>
-        <label for="number1">Enter excavation length, L </label>
-        <input type="number" id="number1" name="number1" required>
-        <label>m</label><br><br>
+  <p> Active earth pressure, P<sub>a</sub> = K<sub>a</sub> y H - 2 c<sub>u</sub> K<sub>a</sub><sup>0.5</sup> <br>
+    Passive earth pressure, P<sub>p</sub> = K<sub>p</sub> y H + 2 c<sub>u</sub> K<sub>p</sub><sup>0.5</sup></sup>
+    <br><br>
 
-        <label for="number2">Enter excavation width, B </label>
-        <input type="number" id="number2" name="number2" required>
-        <label>m</label><br><br>
+    Active earth co-efficient, K<sub>a</sub> = tan<sup>2</sup>(45 - &phi;/2)<br>
+    Passive earth co-efficient, K<sub>p</sub> = tan<sup>2</sup>(45 + &phi;/2)<br><br>
+    <em>[Acerol Mittal - Piling Handbook, Section 4.6]</em> <br> <br>
 
-        <label for="number3">Enter excavation height, H </label>
-        <input type="number" id="number3" name="number3" required>
-        <label>m</label><br><br>
+    A minimum uniform surcharge (q) of 10 kN/m<sup>2</sup> should be used to allow for plant up to 30 tonnes loaded
+    weight.<br>
+    This can be increased to 20 kN/m<sup>2</sup> for plant up to 60 tonnes. <br><br>
+    <em>[CIRIA SP95 - The Design and Construction of Sheet-Piled Cofferdams, Section 4.2.1]</em>
 
-        <h3>Soil Properties</h3>
-        <label for="number4">Enter unit weight, y </label>
-        <input type="number" id="number4" name="number4" required>
-        <label>kN/m<sup>3</sup></label><br><br>
+  </p>
+  <img src="excavation.png" height="300">
+  <form id="myForm">
+    <h3>Excavation Properties</h3>
+    <label for="number1">Enter excavation length, L </label>
+    <input type="number" id="number1" name="number1" required>
+    <label>m</label><br><br>
 
-        <label for="number5">Enter effective friction angle, &Phi; </label>
-        <input type="number" id="number5" name="number5" required>
-        <label>&deg;</label><br><br>
+    <label for="number2">Enter excavation width, B </label>
+    <input type="number" id="number2" name="number2" required>
+    <label>m</label><br><br>
 
-        <label for="number6">Enter cohesion, c<sub>u</sub> </label>
-        <input type="number" id="number6" name="number6" required>
-        <label>kN/m<sup>2</sup></label><br><br>
+    <label for="number3">Enter excavation height, H </label>
+    <input type="number" id="number3" name="number3" required>
+    <label>m</label><br><br>
 
-        <label for="number7">Enter depth to groundwater, H<sub>w</sub> </label>
-        <input type="number" id="number7" name="number7" required>
-        <label>m bgl</label><br><br>
+    <h3>Soil Properties</h3>
+    <h4>Retained Soil</h4>
+    <label for="number4">Enter unit weight, y </label>
+    <input type="number" id="number4" name="number4" required>
+    <label>kN/m<sup>3</sup></label><br><br>
 
-        <button type="button" id="calculateButton">Calculate</button>
-    </form>
+    <label for="number5">Enter effective friction angle, &Phi; </label>
+    <input type="number" id="number5" name="number5" required>
+    <label>&deg;</label><br><br>
 
-    <h3>Results</h3>
+    <label for="number6">Enter cohesion, c<sub>u</sub> </label>
+    <input type="number" id="number6" name="number6" required>
+    <label>kN/m<sup>2</sup></label><br><br>
 
-    <div class="results">
-        <p id="result"></p>
-    </div>
+    <label for="number7">Enter depth to groundwater, H<sub>w</sub> </label>
+    <input type="number" id="number7" name="number7" required>
+    <label>m bgl</label><br><br>
+
+    <h4>Passive Soil</h4>
+    <label for="number8">Enter passive height, H<sub>p</sub> </label>
+    <input type="number" id="number8" name="number8" required>
+    <label>m</label><br><br>
     
-    <div class="footer">
-        <p><em>Copyright - Paul James Clark 2023</em></p>
-    </div>
+    <label for="number9">Enter unit weight, y </label>
+    <input type="number" id="number9" name="number9" required>
+    <label>kN/m<sup>3</sup></label><br><br>
 
-    <script>
-        // Get references to the input elements and the result paragraph
-        const number1Input = document.getElementById('number1');
-        const number2Input = document.getElementById('number2');
-        const number3Input = document.getElementById('number3');
-        const number4Input = document.getElementById('number4');
-        const number5Input = document.getElementById('number5');
-        const resultParagraph = document.getElementById('result');
+    <label for="number10">Enter effective friction angle, &Phi; </label>
+    <input type="number" id="number10" name="number10" required>
+    <label>&deg;</label><br><br>
 
-        // Get the button and add a click event listener
-        const calculateButton = document.getElementById('calculateButton');
-        calculateButton.addEventListener('click', () => {
-            // Get the values entered by the user
-            const number1 = parseFloat(number1Input.value);
-            const number2 = parseFloat(number2Input.value);
-            const number3 = parseFloat(number3Input.value);
-            const number4 = parseFloat(number4Input.value);
-            const number5 = parseFloat(number5Input.value);
-            
-            // Check if the values are valid numbers
-            if (isNaN(number1) || isNaN(number2) || isNaN(number3) || isNaN(number4)) {
-                resultParagraph.textContent = 'Please enter valid numbers.';
-            } else {
-                // Perform the math calculation (for example, addition)
-                const dia = number1 - (2 * number2);
-                const area1 = (Math.PI * (number1/2)**2);
-                const area = ((Math.PI * (number1/2)**2) - (Math.PI * (dia/2)**2)).toFixed(2);
+    <label for="number11">Enter cohesion, c<sub>u</sub> </label>
+    <input type="number" id="number11" name="number11" required>
+    <label>kN/m<sup>2</sup></label><br><br>
 
-                const ixx = ((Math.PI * (number1**4 - dia**4)) / 64).toFixed(2);
-                const zex = (ixx/(number1 * 0.5)).toFixed(2);
+    <button type="button" id="calculateButton">Calculate</button>
+  </form>
 
-                const sheard = (area * number3 / (1000*3**0.5)).toFixed(2);
-                const shearratio = (number4/sheard).toFixed(2);
+  <h3>Results</h3>
 
-                const momentd = ((zex * number3)/10**6).toFixed(2);
-                const momentratio = (number5/momentd).toFixed(2);
+  <div class="results">
+    <p id="result"></p>
+  </div>
+
+  <div class="footer">
+    <p><em>Copyright - Paul James Clark 2023</em></p>
+  </div>
+
+  <script>
+    // Get references to the input elements and the result paragraph
+    const lengthInput = document.getElementById('number1');
+    const widthInput = document.getElementById('number2');
+    const heightInput = document.getElementById('number3');
+    const yInput = document.getElementById('number4');
+    const phiInput = document.getElementById('number5');
+    const cuInput = document.getElementById('number6');
+    const hwInput = document.getElementById('number7');
+    const hpInput = document.getElementById('number8');
+    const ypInput = document.getElementById('number9');
+    const phipInput = document.getElementById('number10');
+    const cupInput = document.getElementById('number11');
+    
+    const resultParagraph = document.getElementById('result');
+
+    // Get the button and add a click event listener
+    const calculateButton = document.getElementById('calculateButton');
+    calculateButton.addEventListener('click', () => {
+      // Get the values entered by the user
+      const length = parseFloat(lengthInput.value);
+      const width = parseFloat(widthInput.value);
+      const height = parseFloat(heightInput.value);
+      const y = parseFloat(yInput.value);
+      const cu = parseFloat(cuInput.value);
+      const phi = parseFloat(phiInput.value);
+      const hw = parseFloat(hwInput.value);
+      const hp = parseFloat(hpInput.value);
+      const yp = parseFloat(ypInput.value);
+      const phip = parseFloat(phipInput.value);
+      const cup = parseFloat(cupInput.value);
+
+      // Check if the values are valid numbers
+      if (isNaN(length) || isNaN(width) || isNaN(height) || isNaN(y)) {
+        resultParagraph.textContent = 'Please enter valid numbers.';
+      } else {
+        // Perform the math calculation (for example, addition)
+        const area = length * width;
+        const ka = ((Math.tan((Math.PI * (45 - (phi / 2))) / 180)) ** 2).toFixed(3);
+        const kp = ((Math.tan((Math.PI * (45 + (phip / 2))) / 180)) ** 2).toFixed(3);
+        const pa = ((ka * y * height) -  (2 * cu * (ka**0.5))).toFixed(3);
+        const pp = ((kp * yp * hp) - (2 * cup * (kp**0.5))).toFixed(3);
 
 
-                const pressure = number1 /(number2 * number3);
-                const pressureR = pressure.toFixed(2);
-                
-                // Display the result
-                resultParagraph.innerHTML = `<h3>Properties</h3> Section area, A<sub>s</sub> = &#960;R<sup>2</sup> - &#960;r <sup>2</sup> = &#960; ${number1/2}<sup>2</sup> - &#960; ${dia/2} <sup>2</sup> = ${area} m<sup>2</sup> <br>
-                Second moment of area, I = &#960;(D<sup>4</sup> - d<sup>4</sup>) / 64 = &#960; (${number1}<sup>4</sup> - ${dia}<sup>4</sup>) / 64 = ${ixx} mm<sup>4</sup> <br>
-                Elastic section modulus, Z = I/y = ${ixx} / ${number1/2} = ${zex} mm<sup>3</sup> <br>
-                <h3>Resistances</h3>
-                Shear resistance, V<sub>R</sub> = A<sub>v</sub> x f<sub>y</sub> / (3<sup>0.5</sup>) = ${area} x ${number3} / (3<sup>0.5</sup>) =  ${sheard} kN<br> 
-                Shear utilisation = V<sub>d</sub> / V<sub>R</sub> = ${number4} / ${sheard} = ${shearratio} <br> <br>
-                Moment resistance, M<sub>R</sub> = Z x f<sub>y</sub> = ${zex} x ${number3} = ${momentd} kNm <br>
-                Moment utilisation = M<sub>d</sub> / M<sub>R</sub> = ${number5} / ${momentd} = ${momentratio} <br> <br> `;
-            }
-        });
-    </script>
+        // Display the result
+        resultParagraph.innerHTML = `A = L x B = ${length} x ${width} = ${area} m<sup>2</sup> <br> <br>
+        <h4>Active Side</h4>
+        K<sub>a</sub> = tan<sup>2</sup>(45 - &phi;/2) = tan<sup>2</sup>(45 - ${phi}/2) = ${ka} <br>
+        P<sub>a</sub> = K<sub>a</sub> y H - 2 c<sub>u</sub> K<sub>a</sub><sup>0.5</sup> = ${ka} x ${y} x ${height}<sup>2</sup> - 2 x ${cu} x ${ka}<sup>0.5</sup> = ${pa} kN/m<sup>2</sup> <br><br>
+        
+        <h4>Passive Side</h4>
+        K<sub>p</sub> = tan<sup>2</sup>(45 + &phi;/2) = tan<sup>2</sup>(45 + ${phip}/2) = ${kp} <br>
+        P<sub>p</sub> = K<sub>p</sub> y H + 2 c<sub>u</sub> K<sub>p</sub><sup>0.5</sup> = ${kp} x ${yp} x ${hp}<sup>2</sup> - 2 x ${cup} x ${kp}<sup>0.5</sup> = ${pp} kN/m<sup>2</sup> <br><br>`;
+      }
+    });
+  </script>
 </body>
+
 </html>
