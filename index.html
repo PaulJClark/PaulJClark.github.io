@@ -4,124 +4,67 @@
 
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width">
-  <title>Calculator JS</title>
+  <title>Civil Calculator</title>
   <link href="stylesheet.css" rel="stylesheet" type="text/css" />
 </head>
 
 
 <body>
     <div class="topnav">
-        <a class="active" href="#home">Home</a>
-        <a href="CHS.html">CHS Designer</a>
-        <a href="excavation.html">Excavation</a>
-        <a href="surcharge.html">Surcharge</a>
-        <a href="soilproperties.html">Soil Properties</a>
+      <a class="active" href="#home">Home</a>
+      <a href="CHS.html">CHS Designer</a>
+      <a href="excavation.html">Excavation</a>
+      <a href="surcharge.html">Surcharge</a>
+      <a href="soilproperties.html">Soil Properties</a>
+      <a href="formwork.html">Formwork</a>
+      <a href="sectionproperties.html">Section Properties</a>
+      <a href="timberbeam.html">Timber Designer</a>     
     </div>
 
 
     <div class="sheet">
-        <h1>Steel CHS Designer</h1>
-        <p>The calculations below are based on the method described in EN 1993-1-1.</p>  
+        <h1>Index</h1>
+        <p>Available resources:</p>
+        <h2>Calculators</h2>
+        <p>
+          <ul>
+            <li><a href="CHS.html">CHS Designer</a></li>
+            <li><a href="excavation.html">Excavation Calculator</a></li>
+            <li><a href="surcharge.html">Surcharge Calculator</a></li>
+            <li><a href="soilproperties.html">Soil Properties</a></li>
+            <li><a href="formwork.html">Formwork Calculator</a></li>
+            <li><a href="timberbeam.html">Timber Member Designer</a></li>
+          </ul>
+        </p>
 
-            <div class="row">
-                
-                <div class="column">
-                    <img src="chs.PNG" height="400">
-                </div>
-                    
-                <div class="column">
-                    <form id="myForm">
-                        <h3>Section Properties</h3>
-                        <label for="number1">Enter diameter, D </label>
-                        <input type="number" id="number1" name="number1" required>
-                        <label>mm</label><br><br>
+        <p></p>
+        <h2>Guidance</h2>
+        <h3>Technical</h3>
+        <ul>
+          <li><a href="soilproperties.html">Soil Properties</a></li>
+        </ul>
+        <h3>Health, Safety & Environment</h3>
+        <ul>
+          <li><a href="HSEstandards.html">Relevant HSE Standards</a></li>
+          <li>Design Risk Assessment</li>
+          <li>CDM 2015</li>
+        </ul>
+        <h3>Commercial</h3>
+        <ul>
+          <li>Basics of Construction Contracts</li>
+        </ul>
+        <h3>Professional Development</h3>
+        <ul>
+          <li><a href="communicationtask.html">CPR Communication Task</a></li>
+        </ul>
 
-                        <label for="number2">Enter wall thickness, t </label>
-                        <input type="number" id="number2" name="number2" required>
-                        <label>mm</label><br><br>
-
-                        <label for="number3">Enter yield strength of steel, f<sub>y</sub> </label>
-                        <input type="number" id="number3" name="number3" required>
-                        <label>N/mm<sup>2</sup></label><br><br>
-
-                        <h3>Design Loading</h3>
-                        <label for="number4">Enter applied shear, V<sub>d</sub> </label>
-                        <input type="number" id="number4" name="number4" required>
-                        <label>kN</label><br><br>
-
-                        <label for="number5">Enter applied moment, M<sub>d</sub> </label>
-                        <input type="number" id="number5" name="number5" required>
-                        <label>kNm</label><br><br>
-
-                        <button type="button" id="calculateButton">Calculate</button>
-                    </form>
-                </div>
-
-            </div>
-
-            <h3>Results</h3>
-            <div class="results">
-                <p id="result"></p>
-            </div>    
+  
     </div>
     
     <div class="footer">
         <p><em>Copyright - Paul James Clark 2023</em></p>
     </div>
     
-
-    <script>
-        // Get references to the input elements and the result paragraph
-        const number1Input = document.getElementById('number1');
-        const number2Input = document.getElementById('number2');
-        const number3Input = document.getElementById('number3');
-        const number4Input = document.getElementById('number4');
-        const number5Input = document.getElementById('number5');
-        const resultParagraph = document.getElementById('result');
-
-        // Get the button and add a click event listener
-        const calculateButton = document.getElementById('calculateButton');
-        calculateButton.addEventListener('click', () => {
-            // Get the values entered by the user
-            const number1 = parseFloat(number1Input.value);
-            const number2 = parseFloat(number2Input.value);
-            const number3 = parseFloat(number3Input.value);
-            const number4 = parseFloat(number4Input.value);
-            const number5 = parseFloat(number5Input.value);
-            
-            // Check if the values are valid numbers
-            if (isNaN(number1) || isNaN(number2) || isNaN(number3) || isNaN(number4)) {
-                resultParagraph.textContent = 'Please enter valid numbers.';
-            } else {
-                // Perform the math calculation (for example, addition)
-                const dia = number1 - (2 * number2);
-                const area1 = (Math.PI * (number1/2)**2);
-                const area = ((Math.PI * (number1/2)**2) - (Math.PI * (dia/2)**2)).toFixed(2);
-
-                const ixx = ((Math.PI * (number1**4 - dia**4)) / 64).toFixed(2);
-                const zex = (ixx/(number1 * 0.5)).toFixed(2);
-
-                const sheard = (area * number3 / (1000*3**0.5)).toFixed(2);
-                const shearratio = (number4/sheard).toFixed(2);
-
-                const momentd = ((zex * number3)/10**6).toFixed(2);
-                const momentratio = (number5/momentd).toFixed(2);
-
-
-                const pressure = number1 /(number2 * number3);
-                const pressureR = pressure.toFixed(2);
-                
-                // Display the result
-                resultParagraph.innerHTML = `<h3>Properties</h3> Section area, A<sub>s</sub> = &#960;R<sup>2</sup> - &#960;r <sup>2</sup> = &#960; ${number1/2}<sup>2</sup> - &#960; ${dia/2} <sup>2</sup> = ${area} m<sup>2</sup> <br>
-                Second moment of area, I = &#960;(D<sup>4</sup> - d<sup>4</sup>) / 64 = &#960; (${number1}<sup>4</sup> - ${dia}<sup>4</sup>) / 64 = ${ixx} mm<sup>4</sup> <br>
-                Elastic section modulus, Z = I/y = ${ixx} / ${number1/2} = ${zex} mm<sup>3</sup> <br>
-                <h3>Resistances</h3>
-                Shear resistance, V<sub>R</sub> = A<sub>v</sub> x f<sub>y</sub> / (3<sup>0.5</sup>) = ${area} x ${number3} / (3<sup>0.5</sup>) =  ${sheard} kN<br> 
-                Shear utilisation = V<sub>d</sub> / V<sub>R</sub> = ${number4} / ${sheard} = ${shearratio} <br> <br>
-                Moment resistance, M<sub>R</sub> = Z x f<sub>y</sub> = ${zex} x ${number3} = ${momentd} kNm <br>
-                Moment utilisation = M<sub>d</sub> / M<sub>R</sub> = ${number5} / ${momentd} = ${momentratio} <br> <br> `;
-            }
-        });
     </script>
 </body>
 </html>
